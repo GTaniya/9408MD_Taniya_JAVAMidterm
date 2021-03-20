@@ -1,25 +1,32 @@
 ***ANSWER ALL QUESTIONS BELOW***
 
 What is a programming language?
-Answer:
+Answer: A programming language is a set of commands, instructions, and other syntax use to create a software program
 
 What is a JDK composed of? Define each components?
-Answer:
+Answer: JDK composed of Java Runtime Environment (JRE), an interpreter/loader (Java), a compiler (javac), an archiver (jar), a documentation generator (Javadoc).
+      * Java Runtime Environment (JRE) is provides the minimum requirements for executing a Java application; it consists of the Java Virtual Machine (JVM), core classes, and supporting files.
+      * Java interpreter/loader converts high-level program statement into Assembly Level Language.  It is designed to read the input source program and then translate the source program instruction by instruction
+      * Java Compiler is a program that takes the text file work of a developer and compiles it into a platform-independent Java file. Java compilers include the Java Programming Language Compiler (javac), the GNU Compiler for Java (GCJ), and the Eclipse Compiler for Java (ECJ)
+      * Java archiver (jar) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution
+      * Java documentation generator (Javadoc) is used for generating Java code documentation in HTML format from Java source code, which requires documentation in a predefined format.
 
 What is an IDE?
-Answer:
+Answer: Integrated Development Environment(IDE), enables programmers to consolidate the different aspects of writing a computer program.
+        IDEs increase programmer productivity by combining common activities of writing software into a single application: editing source code, building executables, and debugging.
 
 What are some of the most popular Java IDEs available in the market?
-Answer:
+Answer: IntelliJ IDEA, Eclipse, NetBeans, BlueJ, Oracle JDeveloper, and DrJava
 
 Explain the entire java life cycle.
 Answer:
 
 What is a class?
-Answer:
+Answer: A class is a user defined blueprint or prototype from which objects are created.  It represents the set of properties or methods that are common to all objects of one type
 
 What is an object?
-Answer:
+Answer: It is a basic unit of Object-Oriented Programming and represents the real life entities.  A typical Java program creates many objects, which as you know, interact by invoking methods.
+        Object consists of State, Behavior and Identity.
 
 What is the entry point of an application?
 Answer:
