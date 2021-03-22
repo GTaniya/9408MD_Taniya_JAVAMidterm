@@ -9,6 +9,17 @@ public class Palindrome {
 
             Write a method to check if a given String is a palindrome or not.
          */
+        String enterString = "mom";
+        StringBuffer buffer = new StringBuffer(enterString);
+        buffer.reverse();
+
+        String data = buffer.toString();
+
+        if (enterString.equals(data)){
+            System.out.println("This String is Palindrome");
+        }else{
+            System.out.println("This String is not Palindrome");
+        }
 
     }
 }

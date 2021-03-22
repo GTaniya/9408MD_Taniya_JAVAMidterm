@@ -31,8 +31,12 @@ public class Numbers {
         System.out.println("Total Execution Time of " + num.length + " numbers in Selection Sort took: "
                 + selectionSortExecutionTime + " milliseconds");
 
-        connectToSqlDB.insertDataFromArrayToSqlTable(num, "selection_sort", "SortingNumbers");
-        List<String> numbers = connectToSqlDB.readDataBase("selection_sort", "SortingNumbers");
+//        connectToSqlDB.insertDataFromArrayToSqlTable(num, "selection_sort", "SortingNumbers");
+//        List<String> numbers = connectToSqlDB.readDataBase("selection_sort", "SortingNumbers");
+//        printValue(numbers);
+
+        connectToSqlDB.insertDataFromArrayToSqlTable(num, "students", "stID");
+        List<String> numbers = connectToSqlDB.readDataBase("students", "stID");
         printValue(numbers);
 
         int n = num.length;
@@ -48,6 +52,37 @@ public class Numbers {
          By following the same convention we used for Selection Sort, continue to do the same for all remaining sorting
             algorithms
          */
+
+        algo.bubbleSort(num);
+        long bubbleSortExecutionTime = algo.executionTime;
+        System.out.println("Total Execution Time of " + num.length + " numbers in Insertion Sort took: "
+                + bubbleSortExecutionTime + " milliseconds");
+
+
+        algo.mergeSort(num);
+        long mergeSortExecutionTime = algo.executionTime;
+        System.out.println("Total Execution Time of " + num.length + " numbers in Insertion Sort took: "
+                + mergeSortExecutionTime + " milliseconds");
+
+        algo.quickSort(num);
+        long quickSortExecutionTime = algo.executionTime;
+        System.out.println("Total Execution Time of " + num.length + " numbers in Insertion Sort took: "
+                + quickSortExecutionTime + " milliseconds");
+
+        algo.heapSort(num);
+        long heapSortExecutionTime = algo.executionTime;
+        System.out.println("Total Execution Time of " + num.length + " numbers in Insertion Sort took: "
+                + heapSortExecutionTime + " milliseconds");
+
+        algo.bucketSort(num);
+        long bucketSortExecutionTime = algo.executionTime;
+        System.out.println("Total Execution Time of " + num.length + " numbers in Insertion Sort took: "
+                + bucketSortExecutionTime + " milliseconds");
+
+        algo.shellSort(num);
+        long shellSortExecutionTime = algo.executionTime;
+        System.out.println("Total Execution Time of " + num.length + " numbers in Insertion Sort took: "
+                + shellSortExecutionTime + " milliseconds");
 
 
         /*

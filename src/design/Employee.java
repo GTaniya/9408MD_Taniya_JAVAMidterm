@@ -13,6 +13,8 @@ public interface Employee {
         and then implement these in a concrete class.
      */
 
+    int employeeYearsOfExperience = 0;
+
     // employeeId() will return employee id.
     int employeeId();
 
@@ -27,5 +29,28 @@ public interface Employee {
 
     //employee benefit
     void benefitLayout();
+
+    //employeeDDOB
+    int employeeDOB();
+
+    //employeeSSN
+    int employeeSSN();
+
+    //employeePTPorFT
+    void employeePTOorFT();
+
+    //employerWorkLocation
+    boolean employeeIsWorkingFromHome();
+
+    //employeeExperience
+    int employeeExperience(int employeeYearsOfExperience);
+
+    //employeeJobLevel
+    String employeeJobLevel();
+
+
+
+
+
 
 }

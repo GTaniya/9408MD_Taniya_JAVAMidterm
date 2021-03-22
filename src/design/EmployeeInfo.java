@@ -2,7 +2,7 @@ package design;
 
 import java.util.Scanner;
 
-public class EmployeeInfo {
+public class EmployeeInfo extends AbstractEmployeeData implements Employee  {
 
     /*
     This class should implement the Employee interface. You can do that by directly implementing it, however you must
@@ -21,7 +21,19 @@ public class EmployeeInfo {
     /*
      * Make sure to declare and use static, non-static & final fields
      */
+
+    //variables
     static String companyName;
+    int companyDOB;
+    String companyLocations;
+
+    // Private Variable
+    private int companyContact;
+
+    //Final
+    static final String companyLogo;
+    static {companyLogo="Keep Fighting";}
+
 
     /*
      You must implement the logic for below 2 methods and
@@ -32,13 +44,35 @@ public class EmployeeInfo {
     /*
      You must have/use multiple constructors
      */
-    public EmployeeInfo(int employeeId) {
 
+
+    public EmployeeInfo(int id, String name, String department, int hours, int daysOfWeek, int salary, String benefits, int dob, int ssn, String ptoOrFt, boolean workLocation, int employeeYearsOfExperience, String jobLevel, String nationality, int startDate, boolean isActive) {
+        super(id, name, department, hours, daysOfWeek, salary, benefits, dob, ssn, ptoOrFt, workLocation, employeeYearsOfExperience, jobLevel, nationality, startDate, isActive);
     }
 
-    public EmployeeInfo(String name, int employeeId) {
-
+    public EmployeeInfo(int id, String name, String department, int hours, int daysOfWeek, int salary, String benefits, int dob, int ssn, String ptoOrFt, boolean workLocation, int employeeYearsOfExperience, String jobLevel, String nationality, int startDate, boolean isActive, int companyDOB, String companyLocations, int companyContact) {
+        super(id, name, department, hours, daysOfWeek, salary, benefits, dob, ssn, ptoOrFt, workLocation, employeeYearsOfExperience, jobLevel, nationality, startDate, isActive);
+        this.companyDOB = companyDOB;
+        this.companyLocations = companyLocations;
+        this.companyContact = companyContact;
     }
+
+    public EmployeeInfo(int companyDOB, String companyLocations, int companyContact) {
+        super();
+        this.companyDOB = companyDOB;
+        this.companyLocations = companyLocations;
+        this.companyContact = companyContact;
+    }
+
+
+
+    //    public EmployeeInfo(int employeeId) {
+//
+//    }
+//
+//    public EmployeeInfo(String name, int employeeId) {
+//
+//    }
 
     /*
      You need to implement the logic of this method as such:
@@ -74,6 +108,66 @@ public class EmployeeInfo {
         // Calculate pension
 
         return total;
+    }
+
+    @Override
+    public int employeeId() {
+        return 0;
+    }
+
+    @Override
+    public String employeeName() {
+        return null;
+    }
+
+    @Override
+    public void assignDepartment() {
+
+    }
+
+    @Override
+    public int calculateSalary() {
+        return 0;
+    }
+
+    @Override
+    public void benefitLayout() {
+
+    }
+
+    @Override
+    public int employeeDOB() {
+        return 0;
+    }
+
+    @Override
+    public int employeeSSN() {
+        return 0;
+    }
+
+    @Override
+    public void employeePTOorFT() {
+
+    }
+
+    @Override
+    public boolean employeeIsWorkingFromHome() {
+        return false;
+    }
+
+    @Override
+    public int employeeExperience(int employeeYearsOfExperience) {
+        return 0;
+    }
+
+    @Override
+    public void employeeNationality(String nationality) {
+
+    }
+
+    @Override
+    public String employeeJobLevel() {
+        return null;
     }
 
     private static class DateConversion {
