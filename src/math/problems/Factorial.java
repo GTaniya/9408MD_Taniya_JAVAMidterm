@@ -30,8 +30,8 @@ public class Factorial {
 
 
     //
-    public static long factorial(int f){
-        long facNum = 1;
+    public static int factorial(int f){
+        int facNum = 1;
 
         for (int i = 1; i <= f; i++){
             facNum = facNum * i;

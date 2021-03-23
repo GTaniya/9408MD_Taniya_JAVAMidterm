@@ -31,43 +31,44 @@ What is FIFO and LIFO?
 Answer: FIFO is First In First Out and It is a method for handling data structures where the first element is processed first and the newest element is processed last. LIFO is Last In First Out.  It is a method for handling data structures where the last element is processed first and the first element is processed last.
 
 Explain Big O Notation?
-Answer:
+Answer: Big O notation is a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity.
 
 What is the best case to search an element from an array?
-Answer:
+Answer: Sequential search. Sequential search is a basic form of searching that checks if an element is present in a given list
 
 What is the worst case to search an element from an array?
-Answer:
+Answer: The worst-case to search an element is linear
 
 Describe what a tree data structure is?
-Answer:
+Answer: A tree is a nonlinear data structure, compared to arrays, linked lists, stacks and queues which are linear data structures. A tree can be empty with no nodes or a tree is a structure consisting of one node called the root and zero or one or more subtrees.
 
 Describe what a graph data structure is?
-Answer:
+Answer: A Graph is a non-linear data structure consisting of nodes and edges. The nodes are sometimes also referred to as vertices and the edges are lines or arcs that connect any two nodes in the graph
 
 What is the difference between the HashTable and HashMap?
-Answer:
+Answer: HashMap is non synchronized. It is not-thread safe and can’t be shared between many threads without proper synchronization code whereas Hashtable is synchronized. It is thread-safe and can be shared with many threads. HashMap allows one null key and multiple null values whereas Hashtable doesn’t allow any null key or value. HashMap is generally preferred over HashTable if thread synchronization is not needed
 
 What are the major data structures used in the following areas : RDBMS, Network data model and Hierarchical data model
-Answer:
+Answer:  RDBMS use Array, Network data model use Graph, and Hierarchical data model useTrees
 
 How do HashMaps work in Java? How do they store values, and when are they useful?
-Answer:
+Answer: A HashMap store items in "key/value" pairs, and you can access them by an index of another type. HashMap stores only object references. Hashmap is useful when we need efficient implementation of search, insert and delete operations.
 
 What is ArrayIndexOutOfBoundsException in java? When does it occur?
-Answer:
+Answer: ArrayIndexOutOfBoundsException occurs whenever we are trying to access any item of an array at an index which is not present in the array. The ArrayIndexOutOfBoundsException is a subclass of IndexOutOfBoundsException, and it implements the Serializable interface.
 
 What are the different ways of copying an array into another array?
-Answer:
+Answer: Manually, Arrays.copyOf(), System.arraycopy(), and Object.clone()
 
 What is DFS and BFS?
-Answer:
+Answer: BFS stands for Breadth First Search. BFS(Breadth First Search) uses Queue data structure for finding the shortest path. DFS stands for Depth First Search. DFS(Depth First Search) uses Stack data structure.
 
 What is Recursion?
-Answer:
+Answer: Recursion is the technique of making a function call itself. This technique provides a way to break complicated problems down into simple problems which are easier to solve.
 
 What are linear and non-linear data Structures?
-Answer:
+Answer: Data structure where data elements are arranged sequentially or linearly where the elements are attached to its previous and next adjacent in what is called a linear data structure.
+        Data structures where data elements are not arranged sequentially or linearly are called non-linear data structures. In a non-linear data structure, single level is not involved.
 
 
 Outline different sorting algorithms and their time complexities:
