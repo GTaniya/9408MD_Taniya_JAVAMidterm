@@ -41,6 +41,6 @@ public class Factorial {
 
     public static void main(String[] args) {
         int f = 5;
-        System.out.println("Factorial of " +f+ " is " + factorial(f));
+        System.out.println("\nFactorial of " +f+ " is " + factorial(f));
     }
 }

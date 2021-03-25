@@ -130,10 +130,6 @@ public class Sort {
         return result;
 
 
-        //final long endTime = System.currentTimeMillis();
-        // final long executionTime = endTime - startTime;
-        //this.executionTime = executionTime;
-        //return list;
 
 
     }

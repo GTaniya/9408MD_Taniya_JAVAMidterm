@@ -1,13 +1,19 @@
 package json.parser;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
-public class CnnAPI {
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
+
+class CNNAPI{
     /*
       You can get API_KEY from this below link. Once you have the API_KEY, you can fetch the top-headlines news.
       https://newsapi.org/s/cnn-api
@@ -20,131 +26,7 @@ public class CnnAPI {
       After getting Json Format of the news, You can go to json validator link: https://jsonlint.com/ to see
       how it can be parsed.
 
-      {
-	"status": "ok",
-	"totalResults": 10,
-	"articles": [{
-		"source": {
-			"id": "cnn",
-			"name": "CNN"
-		},
-		"author": null,
-		"title": "Boulder police chief gets emotional describing slain officer's heroic response - CNN Video",
-		"description": "Ten people were killed in the shooting at King Soopers supermarket, including a Boulder police officer, Boulder Police Chief Maris Herold said at a news conference.",
-		"url": "http://us.cnn.com/videos/us/2021/03/23/boulder-supermarket-shooting-police-chief-presser-sot-vpx.cnn",
-		"urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/210322224738-boulder-police-chief-super-tease.jpg",
-		"publishedAt": "2021-03-23T03:07:24.9267428Z",
-		"content": null
-	}, {
-		"source": {
-			"id": "cnn",
-			"name": "CNN"
-		},
-		"author": null,
-		"title": "Photos: Grocery store shooting in Colorado",
-		"description": "Multiple people, including a police officer, were killed in a shooting that took place Monday at a grocery store in Boulder, Colorado. A person of interest has been taken into custody.",
-		"url": "http://us.cnn.com/2021/03/22/us/gallery/colorado-grocery-store-shooting/index.html",
-		"urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/210322204057-08b-boulder-reported-shooting-super-tease.jpg",
-		"publishedAt": "2021-03-23T01:30:10Z",
-		"content": "People walk out of a King Soopers grocery store in Boulder, Colorado, after a shooting there on Monday, March 22.\r\nUpdated 9:30 PM ET, Mon March 22, 2021\r\nPeople walk out of a King Soopers grocery st… [+635 chars]"
-	}, {
-		"source": {
-			"id": "cnn",
-			"name": "CNN"
-		},
-		"author": "Amir Vera, CNN",
-		"title": "Witnesses describe chaos as shooter opened fire in a Colorado grocery store",
-		"description": "A simple trip to the grocery store for many became a fight for survival.",
-		"url": "http://us.cnn.com/2021/03/22/us/boulder-colorado-shooting-witness-accounts/index.html",
-		"urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/210322201822-10-boulder-reported-shooting-0322-super-tease.jpg",
-		"publishedAt": "2021-03-23T01:13:38Z",
-		"content": "(CNN)A simple trip to the grocery store for many became a fight for survival Monday at a King Soopers in Boulder, Colorado. \r\nRyan Borowski told CNN's Erin Burnett he was at the store to buy a soda a… [+2897 chars]"
-	}, {
-		"source": {
-			"id": "cnn",
-			"name": "CNN"
-		},
-		"author": null,
-		"title": "VIDEO: People seen lying on the ground inside Boulder supermarket  - CNN Video",
-		"description": "Video shows a person motionless on the ground inside a Boulder, Colorado, King Soopers supermarket following police reports of an active shooter at the location.",
-		"url": "http://us.cnn.com/videos/us/2021/03/22/video-boulder-colorado-king-soopers-inside-store-ebof-vpx.cnn",
-		"urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/210322203053-screengrab-or-vpx-use-super-tease.jpg",
-		"publishedAt": "2021-03-23T00:37:25.7100068Z",
-		"content": null
-	}, {
-		"source": {
-			"id": "cnn",
-			"name": "CNN"
-		},
-		"author": "Steve Almasy and Paul P. Murphy, CNN",
-		"title": "Massive police response after gunman opens fire at Boulder, Colorado, grocery store",
-		"description": "Hours after witnesses said a person came into a grocery store in south Boulder, Colorado, and began shooting, the shopping center was still an active crime scene with a massive police presence and authorities had released few details about what happened.",
-		"url": "http://us.cnn.com/2021/03/22/us/boulder-colorado-shooting/index.html",
-		"urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/210322172005-02-boulder-reported-shooting-super-tease.jpg",
-		"publishedAt": "2021-03-22T23:52:31Z",
-		"content": "(CNN)Hours after witnesses said a person came into a grocery store in south Boulder, Colorado, and began shooting, the shopping center was still an active crime scene with a massive police presence a… [+4261 chars]"
-	}, {
-		"source": {
-			"id": "cnn",
-			"name": "CNN"
-		},
-		"author": "By <a href=\"/profiles/veronica-rocha\">Veronica Rocha</a> and Elise Hammond, CNN",
-		"title": "Shooting at Boulder, Colorado, supermarket: Live updates",
-		"description": "Multiple people, including a Boulder police officer, were killed in a shooting at the King Soopers supermarket in Boulder, Colorado, police said. Follow here for the latest.",
-		"url": "https://www.cnn.com/us/live-news/colorado-king-soopers-shooting/h_afe55905fd18ff3746081c7f47985331",
-		"urlToImage": "https://dynaimage.cdn.cnn.com/cnn/digital-images/org/f61acae6-9d0c-46a0-8f55-dfa05ed2df31.jpg",
-		"publishedAt": "2021-03-22T21:43:23Z",
-		"content": "Boulder Police Department Commander Kerry Yamaguchi said there is now no ongoing threat related to the shooting, saying \"a person of interest in custody.\"\r\n\"I can share with the public today, or this… [+283 chars]"
-	}, {
-		"source": {
-			"id": "cnn",
-			"name": "CNN"
-		},
-		"author": "By <a href=\"/profiles/veronica-rocha\">Veronica Rocha</a> and Elise Hammond, CNN",
-		"title": "Live updates: Multiple dead in shooting at Boulder, Colorado, supermarket",
-		"description": "Multiple people, including a Boulder police officer, were killed in a shooting at the King Soopers supermarket in Boulder, Colorado, police said. Follow here for the latest.",
-		"url": "https://www.cnn.com/us/live-news/colorado-king-soopers-shooting/h_a0cf6d87165b29b50db2be4f486f5af0",
-		"urlToImage": "https://dynaimage.cdn.cnn.com/cnn/digital-images/org/f219ce30-4959-49ee-8e1c-8cc8c8af0b57.jpg",
-		"publishedAt": "2021-03-22T21:43:23Z",
-		"content": "Video taken by an eyewitness to the Boulder, Colorado, supermarket shooting appears to show people lying on the ground inside and outside the store, and purported gunshots are heard.\r\nThe video, take… [+1178 chars]"
-	}, {
-		"source": {
-			"id": "cnn",
-			"name": "CNN"
-		},
-		"author": "By <a href=\"/profiles/veronica-rocha\">Veronica Rocha</a>, Elise Hammond, Joshua Berlinger and Adam Renton, CNN",
-		"title": "Shooting at Boulder, Colorado, supermarket: Live updates",
-		"description": "Multiple people, including a Boulder police officer, were killed in a shooting at the King Soopers supermarket in Boulder, Colorado, police said. Follow here for the latest.",
-		"url": "https://www.cnn.com/us/live-news/colorado-king-soopers-shooting/h_d97fb015748f2d53174cc11698a12cfb",
-		"urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/210322194640-08-boulder-reporter-shooting-super-tease.jpg",
-		"publishedAt": "2021-03-22T21:43:23Z",
-		"content": "The investigation into Monday's shooting at the King Soopers supermarket in Boulder was very complex, and would take no less than five days to complete, Boulder Police Chief Maris Herold said.\r\nTen p… [+715 chars]"
-	}, {
-		"source": {
-			"id": "cnn",
-			"name": "CNN"
-		},
-		"author": "Oliver Darcy, CNN Business",
-		"title": "Top Fox producer dies from coronavirus",
-		"description": "Eric Spinato, the head booker and senior story editor for the Fox Business Network, died over the weekend, the network said Monday.",
-		"url": "http://us.cnn.com/2021/03/22/media/fox-business-network-producer-eric-spinato-death/index.html",
-		"urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/210322165104-01-fox-news-file-restricted-super-tease.jpg",
-		"publishedAt": "2021-03-22T21:06:27Z",
-		"content": "New York (CNN Business)Eric Spinato, the head booker and senior story editor for the Fox Business Network, died over the weekend, the network said Monday.\r\nSpinato's brother, Dean, wrote on social me… [+2221 chars]"
-	}, {
-		"source": {
-			"id": "cnn",
-			"name": "CNN"
-		},
-		"author": "Nicole Chavez and Nicquel Terry Ellis, CNN",
-		"title": "Hate is haunting Asian Americans. Their fear underscores a racial reckoning that is far from over",
-		"description": "People laid flowers and prayed outside three spas in the Atlanta area while crowds across the country held signs declaring \"Stop Asian Hate\" in the days after the deadly shootings. Once again, America mourned the killings of people of color.",
-		"url": "http://us.cnn.com/2021/03/22/us/afraid-cnn-special-report-asian-americans/index.html",
-		"urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/210322100431-02-atlanta-mural-0321-super-tease.jpg",
-		"publishedAt": "2021-03-22T19:00:41Z",
-		"content": "Watch \"AFRAID: Fear in Communities of Color\" at 9 p.m. ET on Monday, March 22 -- a CNN Special Report hosted by Amara Walker, Ana Cabrera, Victor Blackwell and Anderson Cooper.\r\n (CNN)People laid flo… [+7946 chars]"
-	}]
-}
+
 
 	   Read the articles array and construct Headline news as source, author, title,description,url,urlToImage,publishedAt
 	   and content. You need to design News Data Model and construct headline news.
@@ -157,13 +39,80 @@ public class CnnAPI {
 
      */
 
-    public static void main(String[] args) throws IOException, JSONException {
-        String apiKey = "";
-        String URL = "https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=b5cb2489183c441e851e3e7c468bc199" + apiKey;
+//    public static void main(String[] args) throws IOException, JSONException {
+//        String apiKey = "b5cb2489183c441e851e3e7c468bc199";
+//        String URL = "https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=b5cb2489183c441e851e3e7c468bc199" + apiKey;
+//
+//        JSONObject rootObject = new JSONObject(new String(Files.readAllBytes(new File("src/json/parser/data.json").toPath())));
+//
+//        // Continue implementing here..
+//    }
+//
+//}
+    public static void main(String[] args) throws Exception {
 
-        JSONObject rootObject = new JSONObject(new String(Files.readAllBytes(new File("src/json/parser/data.json").toPath())));
+        String URL = "https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=b5cb2489183c441e851e3e7c468bc199";
+        NewsDataClass news = null;
+        List<NewsDataClass> list1 = new ArrayList<>();
+        URL url1 = new URL(URL);
+        URLConnection request = url1.openConnection();
+        request.connect();
+        JsonArray jsonArray = null;
+        JsonObject rootObj = null;
+        JsonParser jp = new JsonParser();
+        JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+        if (root instanceof JsonObject) {
+            rootObj = root.getAsJsonObject();
+        } else if (root instanceof JsonArray) {
+            jsonArray = root.getAsJsonArray();
+        }
+        if (jsonArray == null)
+            jsonArray = rootObj.getAsJsonArray("articles");//Storing J object in the Array
 
-        // Continue implementing here..
+        String source = null;
+        String author = null;
+        String title = null;
+        String description = null;
+        String url = null;
+        String urlToImage = null;
+        String publishedAt = null;
+        String content = null;
+        for (int i = 0; i < ((JsonArray) jsonArray).size() - 1; i++) {
+
+            try {
+                JsonObject jsonobject = jsonArray.get(i).getAsJsonObject();
+                System.out.println("\n**************************************************************************************************************************************************************************************************************************************************************************************************");
+                source = jsonobject.get("source").toString();
+                System.out.println("\nSOURCE: "+source);
+                author = jsonobject.get("author").toString();
+                System.out.println("AUTHOR: "+author);
+                title = jsonobject.get("title").toString();
+                System.out.println("TITLE: "+title);
+                description = jsonobject.get("description").toString();
+                System.out.println("DESCRIPTION: "+description);
+                url = jsonobject.get("url").toString();
+                System.out.println("URL: "+ url);
+                urlToImage = jsonobject.get("urlToImage").toString();
+                System.out.println("URL TO IMAGE: "+urlToImage);
+                publishedAt = jsonobject.get("publishedAt").toString();
+                System.out.println("PUBLISHED AT: "+publishedAt);
+                content = jsonobject.get("content").toString();
+                System.out.println("CONTENT: "+content);
+
+
+                news = new NewsDataClass(source, author, title, description, url, urlToImage, publishedAt, content);
+                list1.add(news);
+
+
+            } catch (Exception ex) {
+
+            }
+        }
+
     }
 
+    private static class NewsDataClass {
+        public NewsDataClass(String source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content) {
+        }
+    }
 }
